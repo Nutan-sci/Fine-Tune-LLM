@@ -1,0 +1,9 @@
+json_dir:
+  dir: data/json
+  question_answer_json: "data/json/Question_Answer_ds.json"
+  product_user_manual_json: "data/json/product_user_manual.json"
+
+training_data_dir:
+  dir: data/train_data
+  newtontools_questions_answer: "data/train_data/newtontools_pa.jsonl"
+  newtontools_instruction_response: "data/train_data/newtontools_instruction_response.jsonl"
