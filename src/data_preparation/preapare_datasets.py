@@ -1,9 +1,10 @@
 import pandas as pd
 import yaml
-import os
+
+# import os
 import jsonlines
 from pyprojroot import here
-from typing import List
+# from typing import List
 
 
 def prepare_qa_dataset(data_dir):
@@ -30,7 +31,7 @@ def prepare_instruction_response_dataset(data_dir):
     for i in range(len(df["instruction"])):
         instruction = f"### Instruction:\n{df['instruction'][i]}\n\n\n### Response:\n"
         response = df["response"][i]
-        finetune_data.append({"isntruction": instruction, "response": response})
+        finetune_data.append({"instruction": instruction, "response": response})
 
     return finetune_data
 
@@ -43,12 +44,16 @@ if __name__ == "__main__":
     )
     dataset2 = prepare_qa_dataset(app_config["json_dir"]["question_answer_json"])
 
-    # with jsonlines.open(
-    #     here(app_config["training_data_dir"]["newtontools_instruction_response"]), "w"
-    # ) as writer:
-    #     writer.write_all(dataset1)
+    with jsonlines.open(
+        here(app_config["training_data_dir"]["newtontools_instruction_response"]), "w"
+    ) as writer:
+        writer.write_all(dataset1)
 
     with jsonlines.open(
         here(app_config["training_data_dir"]["newtontools_questions_answer"]), "w"
     ) as writer:
         writer.write_all(dataset2)
+
+    print("Data preparation completed")
+
+# C:\Users\nutan\nutan\GenAI\Fine Tune LLM\src\data_preparation\preapare_datasets.py
